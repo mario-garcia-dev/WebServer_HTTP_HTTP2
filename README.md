@@ -1,5 +1,7 @@
 # EXPRESS
 
+## Web Server
+
 1. Install express and types:
 
 ```bash
@@ -40,4 +42,55 @@ this.app.listen(this.port, () => {
 (async () => {
     main();
 })();
+```
+
+## RESTful API - CRUD
+
+1. Create a controller.ts file, on this file we have the TodosController class, that has every CRUD methods, every method receives as parameters the request and the response.
+
+2. Define the routes of the todos module:
+```ts
+export class TodoRoutes {
+    static get routes(): Router {
+
+        const router = Router();
+        const todoController = new TodosController();
+
+        router.get("/", todoController.getTodos);
+        // post, put, delete, etc...
+
+        return router;
+    };
+};
+```
+
+3. On a top level routes file, use the routes defined on the todos routes file:
+
+```ts
+export class AppRoutes {
+    static get routes(): Router {
+
+        const router = Router();
+
+        router.use("/api/todos", TodoRoutes.routes);
+
+        return router;
+    };
+};
+```
+
+4. 
+
+
+5. On the Server class in server.ts file, we need to receive as a property all the routes from the app.ts and use it as middleware:
+
+```ts
+this.app.use(this.routes);
+```
+
+And define middlewares to parse the body from the requests and use it to do the CRUD:
+
+```ts
+this.app.use(express.json()); // for raw
+this.app.use(express.urlencoded({extended: true})); // for x-www-form-urlencoded
 ```

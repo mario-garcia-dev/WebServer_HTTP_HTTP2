@@ -10,7 +10,7 @@ const main = () => {
     });
 
     server.start();
-}
+};
 
 (async () => {
     main();

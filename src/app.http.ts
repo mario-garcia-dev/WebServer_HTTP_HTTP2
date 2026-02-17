@@ -13,19 +13,19 @@ const server = http.createServer((req, resp) => {
     // resp.writeHead(200, {"content-type": "application/json"});
     // resp.end(JSON.stringify(data));
     // -------------------------------------------------------------
-    if (req.url === '/') {
+    if (req.url === "/") {
         const htmlFile = fs.readFileSync("./public/index.html", "utf-8");
         resp.writeHead(200, { "content-type": "text/html" });
         resp.end(htmlFile);
 
         return;
-    };
+    }
 
     if (req.url?.endsWith(".js")) {
         resp.writeHead(200, { "content-type": "application/javascript" });
     } else if (req.url?.endsWith(".css")) {
         resp.writeHead(200, { "content-type": "text/css" });
-    };
+    }
 
     const content = fs.readFileSync(`./public${req.url}`, "utf-8");
     resp.end(content);

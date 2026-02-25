@@ -161,3 +161,7 @@ export class NameDTO {
     }
 }
 ```
+
+## Clean Architecture + Repository pattern
+
+1. Just implement the Clean Architecture + Repository pattern.
